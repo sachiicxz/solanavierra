@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Vierra | Units</title>
+
+    <link rel="stylesheet" href="css/review.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--bootstrap links-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!--navbar section-->
+    
+    <!-- Landing Section -->
+    <div class="container guest-reviews" id="reviews">
+        <h1>Welcome to Solana Vierra Hotel</h1>
+        <hr class="mx-auto" style="height: 3px; background-color: black; width: 65px; margin-bottom: 3%;">
+
+        <div class="container">
+            <div class="row g-3 mb-2">
+                <div class="col-6">
+                    <img src="units/room1/room1-page.jpg" class="img-fluid w-100 main-image" alt="Main Image 1">
+                </div>
+                <div class="col-6">
+                    <img src="units/room10/bed.jpg" class="img-fluid w-100 main-image" alt="Main Image 2">
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-3">
+                    <img src="units/room2/Room2-page.jpg" class="img-fluid w-100 small-image" alt="Image 1">
+                </div>
+                <div class="col-3">
+                    <img src="units/room3/room3.jpg" class="img-fluid w-100 small-image" alt="Image 2">
+                </div>
+                <div class="col-3">
+                    <img src="units/room6/room6.jpg" class="img-fluid w-100 small-image" alt="Image 3">
+                </div>
+                <div class="col-3">
+                    <img src="units/room8/room8.jpg" class="img-fluid w-100 small-image" alt="Image 4">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12-md-6">
+                <h3 class="review-text">Guests Reviews</h3>
+
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <p class="mb-0"><b>Share your experience with us.</b></p>
+                    <button class="review-btn" data-bs-toggle="modal" data-bs-target="#reviewModal"><a href=""></a>
+                        <i class="bi bi-pencil me-1"></i>Write a review
+                    </button>
+                </div>
+
+                <div id="reviewList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1">
+        <div class="modal-dialog">
+            <form class="modal-content" id="reviewForm">
+                <span class="close-button" data-bs-dismiss="modal">&times;</span>
+                <h3 class="modal-title">Write a review</h3>
+                <hr>
+
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <input type="hidden" id="accountName" value="Jane Doe">
+
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="anonymousCheck" checked>
+                            <label class="form-check-label" for="anonymousCheck">Submit as anonymous</label>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label d-block mb-1">Rating</label>
+                            <div id="starRating" class="star-rating text-warning">
+                                <i class="bi bi-star" data-value="1"></i>
+                                <i class="bi bi-star" data-value="2"></i>
+                                <i class="bi bi-star" data-value="3"></i>
+                                <i class="bi bi-star" data-value="4"></i>
+                                <i class="bi bi-star" data-value="5"></i>
+                            </div>
+                            <input type="hidden" id="reviewRating" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="reviewText" class="form-label">Your Review</label>
+                            <textarea class="form-control" id="reviewText" rows="4" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="confirmation-message text-success text-center d-none">
+                        <p class="mb-0">Review submitted successfully!</p>
+                    </div>
+
+
+                    <div class="d-flex justify-content-center submit-button-wrapper">
+                        <button type="submit" class="submit-btn">Submit Review</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--review lsit script-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const badWords = ["wtf", "horrible", "awful", "sucks", "terrible"];
+            const reviewForm = document.getElementById("reviewForm");
+            const reviewList = document.getElementById("reviewList");
+            const stars = document.querySelectorAll("#starRating .bi");
+            const ratingInput = document.getElementById("reviewRating");
+            const reviewModalEl = document.getElementById("reviewModal");
+            const reviewModal = new bootstrap.Modal(reviewModalEl);
+            const currentUser = { name: "Jane Doe" };
+
+            function censorText(text) {
+                return badWords.reduce((acc, word) => {
+                    const regex = new RegExp(word, "gi");
+                    return acc.replace(regex, match => "*".repeat(match.length));
+                }, text);
+            }
+
+            function saveReview(review) {
+                const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+                reviews.push(review);
+                localStorage.setItem("reviews", JSON.stringify(reviews));
+            }
+
+            function loadReviews() {
+                reviewList.innerHTML = "";
+                const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+                let row = null;
+
+                reviews.forEach((review, i) => {
+                    if (i % 2 === 0) {
+                        row = document.createElement("div");
+                        row.className = "row mb-3";
+                        reviewList.appendChild(row);
+                    }
+
+                    const col = document.createElement("div");
+                    col.className = "col-md-6";
+                    col.innerHTML = `
+                    <div class="review-card shadow-sm p-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <h6 class="mb-0 me-2">${review.name}</h6>
+                            <div class="text-warning small">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
+                        </div>
+                        <p>${review.comment}</p>
+                    </div>
+                `;
+                    row.appendChild(col);
+                });
+            }
+
+
+            stars.forEach(star => {
+                star.addEventListener("click", () => {
+                    const value = parseInt(star.dataset.value);
+                    ratingInput.value = value;
+                    stars.forEach((s, i) => {
+                        s.className = i < value ? "bi bi-star-fill" : "bi bi-star";
+                    });
+                });
+            });
+
+            reviewForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const rating = parseInt(ratingInput.value);
+                const comment = censorText(document.getElementById("reviewText").value.trim());
+                const isAnon = document.getElementById("anonymousCheck").checked;
+                const name = isAnon ? "Anonymous" : currentUser.name;
+
+                if (!rating || !comment) {
+                    alert("Please provide both a rating and a review.");
+                    return;
+                }
+
+                const review = { name, rating, comment };
+                saveReview(review);
+                loadReviews();
+
+                reviewForm.querySelector(".modal-body-content").classList.add("d-none");
+                reviewForm.querySelector(".confirmation-message").classList.remove("d-none");
+                reviewForm.querySelector(".submit-button-wrapper").classList.add("d-none");
+
+                setTimeout(() => {
+                    reviewModal.hide();
+                }, 1000);
+            });
+
+            reviewModalEl.addEventListener("show.bs.modal", () => {
+                reviewForm.reset();
+                ratingInput.value = "";
+                stars.forEach(s => s.className = "bi bi-star");
+
+                reviewForm.querySelector(".modal-body-content").classList.remove("d-none");
+                reviewForm.querySelector(".confirmation-message").classList.add("d-none");
+                reviewForm.querySelector(".submit-button-wrapper").classList.remove("d-none");
+            });
+
+            loadReviews();
+        });
+    </script>
+
+</body>
+
+</html>

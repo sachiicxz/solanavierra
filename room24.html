@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Vierra | Units</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--bootstrap links-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+
+<body>
+    <!--navbar section-->
+
+    <!--main section-->
+    <div class="hero">
+        <div class="hero-content position-relative">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="units/room24/bed.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption">
+                            <h3>Spacious Deluxe Room</h3>
+                            <h5>Relax in comfort with stunning views and king-size beds.</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="units/room23/view.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption">
+                            <h3>Scenic Landscape View</h3>
+                            <h5>Enjoy the beauty of the red rocks right from your room.</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="units/room24/cr.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption">
+                            <h3>Modern Bathroom</h3>
+                            <h5>Equipped with premium amenities and a luxurious shower.</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Section -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <span class="close-button" id="closeModal">&times;</span>
+                <h3 class="modal-title">Book Your Appointment</h3>
+                <hr>
+
+                <form action="" method="">
+                    <div class="row">
+                        <h4>Fill Information</h4>
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Fullname">
+                                <label for="floatingName">Full Name</label>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="address" class="form-control" id="floatingAddress" placeholder="Address">
+                                <label for="floatingAddress">Address</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingNumber"
+                                    placeholder="Phone Number">
+                                <label for="floatingNumber">Phone Number</label>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingEmail"
+                                    placeholder="email@example.com">
+                                <label for="floatingEmail">Email Address</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-4">
+                        <h4>Booking Information</h4>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <select class="form-select" aria-label="Select Room No." id="floatingSelect" required>
+                                    <option selected disabled>Select Room</option>
+                                    <option value="1">ROOM017</option>
+                                    <option value="2">ROOM018</option>
+                                    <option value="3">ROOM019</option>
+                                    <option value="4">ROOM020</11option>
+                                    <option value="5">ROOM021</option>
+                                    <option value="6">ROOM022</option>
+                                    <option value="7">ROOM023</option>
+                                    <option value="8">ROOM024</option>
+                                </select>
+                                <label for="floatingSelect">Room No:</label>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <div class="counter">
+                                    <label for="floatingGuests">Number of Guests</label>
+                                    <button type="button" class="btn-minus form-control">−</button>
+                                    <span id="guest-count">1</span>
+                                    <button type="button" class="btn-plus">+</button>
+                                </div>
+                            </div>
+                            <div id="guest-alert" class="guest-alert"></div>
+                        </div>
+                    </div>
+
+                    <!-- Appointment Booking Form -->
+                    <div class="row mt-2 booking-form">
+                        <div class="col-6">
+                            <label for="appointment">Appointment Date:</label>
+                            <div class="input-icon">
+                                <input type="text" id="appointment" name="appointment" class="appointment-input"
+                                    placeholder="Date & Time" required />
+                                <i class="bi bi-calendar4-week calendar-icon"></i>
+                            </div>
+                            <div id="appointment-confirmation" class="confirmation"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="confirm-btn">Confirm Appointment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--header-->
+    <div class="container header">
+        <div class="header-content">
+
+            <br>
+            <h1>The Urban Prestige</h1>
+
+            <p class="text-center"><b>2 Double Beds</b></p>
+
+            <hr class="mx-auto" style="height: 3px; background-color: black; width: 65px; margin-bottom: 3%;">
+
+            <div class="hotel-header">
+                <div class=" flex-grow-1">
+                    <div class="d-flex align-items-center flex-wrap gap-2">
+                        <div class="d-flex align-items-center">
+                            <div class="review-rating">
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                                <span class="star">&#9733;</span>
+                            </div>
+                            <span class="ms-1"><a href="#reviews">(1,342 reviews)</a></span>
+                        </div>
+                        <span><i class="bi bi-pencil me-1"></i><a href="guest-reviews.html" target="_blank">Write a
+                                review</a></span>
+                        <span><i class="bi bi-envelope me-1"></i><a
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=solanavierrahotel@gmail.com"
+                                target="_blank">Email Hotel</a></span>
+                        <span><i class="bi bi-telephone me-1"></i>+63 917 129 9252</span>
+                    </div>
+
+                    <div class="d-flex align-items-center flex-wrap gap-3 mt-2">
+                        <span><i class="bi bi-geo-alt-fill me-1"></i>30th Street corner 5th Avenue, BGC, Taguig
+                            City,
+                            Metro Manila</span>
+                        <span><i class="bi bi-globe2 me-1"></i><a href="#">Visit Solana Vierra Website</a></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <span>
+                        <button class="book-btn" id="openModal">Book Appointment</button>
+                    </span>
+                </div>
+            </div>
+
+            <hr>
+
+            <p class="text-paragraph">The Urban Prestige is designed for the modern traveler who
+                values comfort and city sophistication. This spacious suite features a plush king-sized bed, a lounge
+                area with a convertible sleeper sofa, and a dedicated workspace with a built-in desk. The kitchenette is
+                equipped with a microwave, coffee maker, and mini-fridge for light meals. Floor-to-ceiling windows offer
+                sweeping views of the BGC skyline, and the contemporary bathroom includes a walk-in rain shower, vanity,
+                and premium toiletries. </p>
+        </div>
+    </div>
+
+    <!--features-->
+    <div class="container features">
+        <div class="amenities mt-3">
+            <h3 class="text-title">Amenities & Features</h3>
+            <p class="room-info">Enhance your stay with thoughtful conveniences like complimentary breakfast,
+                high-speed Wi-Fi, and
+                organic bath products — all designed to make your visit more comfortable and relaxing.
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="amenities-list">
+                        <div><img src="icons/double_10891435.png" alt="Room">2 Double Beds</div>
+                        <div><img src="icons/workplace_8980630.png" alt="Desk">Work Desk & Chair</div>
+                        <div><img src="icons/air-conditioner_16942171.png" alt="AC">Climate Control</div>
+                        <div><img src="icons/coffee-maker_680630.png" alt="Coffee">Coffee Station</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="amenities-list">
+                        <div><img src="icons/landscape_10639481.png" alt="View">City View Window</div>
+                        <div><img src="icons/sign_16187931.png" alt="Wi-Fi">Fast Wi-Fi</div>
+                        <div><img src="icons/locker_1836826.png" alt="Security">Room Safe</div>
+                        <div><img src="icons/building_14199177.png" alt="Elevator">Elevator Access</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="feature mt-3">
+            <h3 class="text-title">Room Description</h3>
+            <p class="room-info">Enjoy the comfort of a spacious layout, modern entertainment systems, luxury
+                bedding, and smart room
+                controls — crafted for a premium guest experience.
+            </p>
+            <div class="row">
+                <div class="col-12-md-6">
+                    <div class="features-list">
+                        <ul>
+                            <li>
+                                <div>Panoramic City View – Floor-to-ceiling windows with skyline views of BGC.</div>
+                            </li>
+                            <li>
+                                <div>Smart Climate Control – Personalized in-room temperature settings via smart panel.
+                                </div>
+                            </li>
+                            <li>
+                                <div>Modern Workspace – Sleek desk with high-speed Wi-Fi and USB charging ports.</div>
+                            </li>
+                            <li>
+                                <div>Rainfall Shower – Spacious walk-in shower with premium bath essentials.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--house rules-->
+    <div class="container house-rules mt-3">
+        <h3 class="text-title">House Rules</h3>
+        <p class="room-info">We want your stay at Solana Vierra to be as smooth and relaxing as possible. Kindly
+            take a
+            moment to review our house rules before your arrival. <br>
+            For any questions or requests, our 24-hour front desk is always ready to assist.
+            We appreciate your cooperation and look forward to welcoming you!
+        </p>
+        <div class="row">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/check-in.png" alt="Check-in">
+                                <span>Check-in Time:</span>
+                            </div>
+                        </th>
+                        <td>From 2:00 PM
+                            Please inform us in advance of your estimated arrival time to help us prepare your
+                            room.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/left.png" alt="Check-out">
+                                <span>Check-out Time:</span>
+                            </div>
+                        </th>
+                        <td>Available 24 hours &ndash; you may check out at any time within your scheduled
+                            departure date.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/cancel.png" alt="cancel-payment">
+                                <span>Cancellation & Prepayment:</span>
+                            </div>
+                        </th>
+                        <td>Cancellation and prepayment policies vary depending on the room type and rate you
+                            select.
+                            To view the conditions applicable to your stay, please enter your dates and check
+                            the
+                            terms for your chosen room.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/cashless-payment.png" alt="payment-method">
+                                <span>Accepted Payment Methods:</span>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="payment-methods">
+                                <div class="payment-option">
+                                    <img src="icons/visa.png" alt="Visa">
+                                    <span>Visa</span>
+                                </div>
+                                <div class="payment-option">
+                                    <img src="icons/card.png" alt="Mastercard">
+                                    <span>Mastercard</span>
+                                </div>
+                                <div class="payment-option">
+                                    <img src="icons/payment-method.png" alt="Cash">
+                                    <span>Cash</span>
+                                </div>
+                                <div class="payment-option">
+                                    <img src="icons/transference_8176489.png" alt="Bank-transfer">
+                                    <span>Bank Transfer</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/family-member.png" alt="Childrens">
+                                <span>Childrens:</span>
+                            </div>
+                        </th>
+                        <td colspan="5">
+                            <div>
+                                Children of all ages are welcome.
+                            </div>
+                            <div>
+                                Children aged 7 years and older will be charged as adults.
+                            </div>
+                            <div>
+                                To ensure accurate pricing and occupancy details, please include the
+                                number
+                                and ages of
+                                children in your reservation.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/bed.png" alt="Bed-policy">
+                                <span>Extra Bed Policy:</span>
+                            </div>
+                        </th>
+                        <td colspan="5">
+                            <div>
+                                ₱600 per person, per night for an extra bed (upon request).
+                            </div>
+                            <div>
+                                Charges for extra beds are not included in the room rate and must be
+                                paid
+                                during your
+                                stay.
+                            </div>
+                            <div>
+                                Availability of extra beds depends on the room type selected.
+                            </div>
+                            <div>
+                                No cribs are available.
+                            </div>
+                            <div>
+                                All extra beds are subject to availability.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/aging.png" alt="age-restriction">
+                                <span>Age Requirement:</span>
+                            </div>
+                        </th>
+                        <td>There is no minimum age requirement for check-in.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="payment-option">
+                                <img src="icons/no-animals.png" alt="Pets">
+                                <span>Pets:</span>
+                            </div>
+                        </th>
+                        <td>Pets are not allowed at the property.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--FAQ's-->
+
+    <div class="container FAQ mt-3">
+        <h3 class="text-title">Frequently Ask Questions</h3>
+        <p class="room-info">We understand that planning your stay is an exciting yet sometimes overwhelming
+            experience.
+            To help make your journey to Solana Vierra Hotel as smooth as possible, we've compiled answers to some
+            of
+            the most frequently asked questions. Whether you're curious about room options, amenities, check-in
+            times,
+            or other services, you’ll find all the information you need right here.
+            Explore the questions below to learn more about what Solana Vierra Hotel has to offer. Should you need
+            further assistance, our friendly team is always here to help!
+        </p>
+        <div class="row">
+            <div class="col-12 col-md-6 mb-4">
+                <div class="accordion" id="FAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <b>
+                                    What types of rooms can I book at Solana Vierra Hotel?
+                                </b>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <div>Solana Vierra Hotel offers a variety of room types, including:
+                                </div>
+                                <ul>
+                                    <li>
+                                        Deluxe King Room
+                                    </li>
+                                    <li>
+                                        Twin/Double Room
+                                    </li>
+                                    <li>
+                                        Family Room
+                                    </li>
+                                    <li>
+                                        Suite Room
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <b>What are the check-in and check-out times at Solana Vierra Hotel?</b>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <b>Check-in</b> starts at 2:00 PM, and <b>check-out</b> is available 24 hours on
+                                your
+                                scheduled
+                                departure date.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <b>How much does a stay at Solana Vierra Hotel cost?</b>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Room rates vary depending on your chosen room, travel dates, and number of guests.
+                                To
+                                view accurate pricing, please enter your stay dates.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 mb-4">
+                <div class="accordion" id="FAQ1">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                <b>Does Solana Vierra Hotel have an on-site restaurant?</b>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                Yes, the hotel offers in-house dining and provides complimentary breakfast to all
+                                registered guests.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                <b>How far is Solana Vierra Hotel from the city center?</b>
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Solana Vierra Hotel is located in a convenient and accessible area, just a few
+                                minutes
+                                from the city center, depending on traffic.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                <b>Is Solana Vierra Hotel popular with families?</b>
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Yes, many families enjoy staying here. Guests have praised the spacious rooms,
+                                family-friendly amenities, and overall comfort of the hotel.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--facilities-->
+    <div class="container facilities mt-3">
+        <h3 class="text-title">Most Popular Facilities</h3>
+        <div class="row text-center g-3">
+            <div class="facilities-list">
+                <div><img src="icons/sign_16187931.png" alt="Wifi">Free WiFi</div>
+                <div><img src="icons/bed.png" alt="Family rooms">Family rooms</div>
+                <div><img src="icons/parking.png" alt="Free parking">Free parking</div>
+                <div><img src="icons/woman_15286525.png" alt="Room Service">Room Service
+                </div>
+                <div><img src="icons/home-kitchen_13802401.png" alt="Sinks">Kitchenette
+                </div>
+                <div><img src="icons/food_5134814.png" alt="Kitchen">Breakfast</div>
+            </div>
+        </div>
+
+        <div class="services-wrapper">
+            <div class="row mt-3 flex-nowrap">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="services-list">
+                        <div>
+                            <h6 class="services-title mt-3"><b>Perfect for your stay</b></h6>
+                        </div>
+                        <div><img src="icons/sign_16187931.png" alt="Wifi">Free WiFi</div>
+                        <div><img src="icons/bed.png" alt="Family rooms">Family rooms</div>
+                        <div><img src="icons/parking.png" alt="Free parking">Free parking</div>
+                        <div><img src="icons/woman_15286525.png" alt="Room Service">Room Service
+                        </div>
+                        <div><img src="icons/home-kitchen_13802401.png" alt="Sinks">Kitchenette
+                        </div>
+                        <div><img src="icons/food_5134814.png" alt="Kitchen">Breakfast</div>
+
+                        <div>
+                            <h6 class="services-title mt-3"><b>Bathrooms</b></h6>
+                        </div>
+                        <div><img src="icons/toilet-paper.png" alt="Toilet paper">Toilet paper
+                        </div>
+                        <div><img src="icons/towel_8104149.png" alt="Towels">Towels</div>
+                        <div><img src="icons/shower_1752131.png" alt="Bathtub">Bathtub & shower</div>
+                        <div><img src="icons/bathroom_7326091.png" alt="Private bathroom">Private bathroom
+                        </div>
+                        <div><img src="icons/toilet.png" alt="Sinks">Toilet
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="services-list">
+                        <div>
+                            <h6 class="services-title mt-3"><b>Room Amenities</b></h6>
+                        </div>
+                        <div><img src="icons/technology_18586989.png" alt="Linen">Media & Technology
+                        </div>
+                        <div><img src="icons/sofa_15877277.png" alt="Channels">Cable Channels</div>
+                        <div><img src="icons/telephone.png" alt="Telephone">Telephone</div>
+                        <div><img src="icons/computer_15901501.png" alt="Television">Television</div>
+                        <div><img src="icons/food_5134814.png" alt="Drink">Food & Drink</div>
+                        <div><img src="icons/home-kitchen_13802401.png" alt="Restaurant">On-site Restaurant
+                        </div>
+
+                        <div>
+                            <h6 class="services-title mt-3"><b>General</b></h6>
+                        </div>
+                        <div><img src="icons/air-conditioner_16942171.png" alt="air-con">
+                            Air-conditioned rooms
+                        </div>
+                        <div><img src="icons/no-smoking.png" alt="no-smoking">
+                            Non-smoking rooms throughout the hotel
+                        </div>
+                        <div><img src="icons/wheelchair.png" alt="PWD">
+                            Accessible facilities for disabled guests
+                        </div>
+                        <div><img src="icons/meeting-room.png" alt="group-rooms">
+                            Group Accommodation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="services-list">
+                        <div>
+                            <h6 class="services-title mt-3"><b>Parking Services</b></h6>
+                        </div>
+                        <div><img src="icons/parking.png" alt="Parking">Parking Garage</div>
+                        <div><img src="icons/parking-area.png" alt="Parking">Free and private parking is available.
+                        </div>
+                        <div><img src="icons/parking-sign.png" alt="Parking">Accessible Parking</div>
+
+                        <div>
+                            <h6 class="services-title mt-3"><b>Services</b></h6>
+                        </div>
+                        <div><img src="icons/photo-copier.png" alt="xerox">Fax/photocopying
+                        </div>
+                        <div><img src="icons/iron.png" alt="Ironing">
+                            Ironing service
+                        </div>
+                        <div><img src="icons/laundry-machine.png" alt="Laundry">
+                            Laundry service
+                        </div>
+                        <div><img src="icons/check-in.png" alt="front-desk">
+                            24-hour front desk
+                        </div>
+                        <div><img src="icons/conversation.png" alt="Meeting">
+                            Meeting/banquet facilities
+                        </div>
+                        <div><img src="icons/woman_15286525.png" alt="room-service">
+                            Room service
+                        </div>
+                        <div><img src="icons/suitcase_4802961.png" alt="Baggage Storage"> Baggage storage</div>
+                        <div><img src="icons/shuttle.png" alt="Shuttle"> Shuttle service</div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="services-list">
+                        <div>
+                            <h6 class="services-title mt-3"><b>Rooms </b></h6>
+                        </div>
+                        <div><img src="icons/pillow.png" alt="Linen">Linen
+                        </div>
+                        <div><img src="icons/towel_8104149.png" alt="Clothes Rack">Clothes Rack</div>
+                        <div><img src="icons/sofa_15877277.png" alt="lounge">Lounge</div>
+                        <div><img src="icons/workplace_8980630.png" alt="Desk">Desk
+                        </div>
+
+                        <div>
+                            <h6 class="services-title mt-3"><b> Safety & Security</b></h6>
+                        </div>
+                        <div><img src="icons/locker_1836826.png" alt="Personal Locker">
+                            Personal Locker
+                        </div>
+                        <div><img src="icons/safety-box.png" alt="safety-box">
+                            Safety deposit box
+                        </div>
+                        <div><img src="icons/policeman.png" alt="Security"> 24-hour security</div>
+                        <div><img src="icons/cctv-camera.png" alt="CCTV"> CCTV in common areas</div>
+                        <div><img src="icons/fire-extinguisher.png" alt="Fire Extinguisher"> Fire extinguishers</div>
+                        <div><img src="icons/smoke-detector.png" alt="Smoke Alarm"> Smoke alarms</div>
+                        <div><img src="icons/siren.png" alt="Security Alarm"> Security alarm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--nearby contents-->
+    <div class="container nearby">
+        <h3 class="text-title">Nearby the Hotel</h3>
+        <div class="row">
+            <!-- Parks & Open Spaces -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="nearby-list">
+                    <h6 class="nearby-title"><img src="icons/park_2169407.png" alt=""> Parks & Open Spaces</h6>
+                    <ul>
+                        <li>Track 30th – 5 min walk</li>
+                        <li>Kasalikasan Garden – 8 min walk</li>
+                        <li>Terra 28th – 10 min walk</li>
+                        <li>Burgos Circle Park – 15 min walk</li>
+                        <li>Greenway Park – 1.2 km</li>
+                        <li>Forbes Park – 1.5 km</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Museums -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="nearby-list">
+                    <h6 class="nearby-title"><img src="icons/museum_8693857.png" alt=""> Museums & Cultural
+                        Attractions
+                    </h6>
+                    <ul>
+                        <li>The Mind Museum – 450 m</li>
+                        <li>Ayala Museum – 4.6 km</li>
+                        <li>Metropolitan Museum of Manila – 6.5 km</li>
+                        <li>National Museum of Fine Arts – 8.5 km</li>
+                        <li>Intramuros & Fort Santiago – 9.2 km</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quick Access -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="nearby-list">
+                    <h6 class="nearby-title"><img src="icons/car_7170025.png" alt=""> Quick Access to:</h6>
+                    <ul>
+                        <li>Makati Central Business District – 10–15 mins</li>
+                        <li>NAIA Airport – approx. 25–30 mins drive</li>
+                        <li>Pasay (MOA, CCP Complex) – 25 mins drive</li>
+                        <li>Quezon City via C5 – 30 mins drive</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Shopping & Lifestyle -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="nearby-list">
+                    <h6 class="nearby-title"><img src="icons/shopping-cart_2331970.png" alt=""> Shopping & Lifestyle
+                    </h6>
+                    <ul>
+                        <li>Bonifacio High Street – 200 m</li>
+                        <li>SM Aura Premier – 750 m</li>
+                        <li>Market! Market! – 900 m</li>
+                        <li>Uptown Mall – 1.2 km</li>
+                        <li>Central Square – 450 m</li>
+                        <li>The Shops at Serendra – 850 m</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Entertainment & Nightlife -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="nearby-list">
+                    <h6 class="nearby-title"><img src="icons/show_531213.png" alt=""> Entertainment & Nightlife</h6>
+                    <ul>
+                        <li>The Palace Manila (Clubbing Complex) – 1.1 km</li>
+                        <li>Comedy Manila at BGC – 800 m</li>
+                        <li>Bonifacio Global City Amphitheater – 650 m</li>
+                        <li>Uptown Parade – 1.3 km</li>
+                        <li>City Golf Driving Range – 2 km</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Family-Friendly Attractions -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="nearby-list">
+                    <h6 class="nearby-title"><img src="icons/skywheel_15485531.png" alt=""> Family-Friendly
+                        Attractions
+                    </h6>
+                    <ul>
+                        <li>KidZania Manila (formerly) – 700 m</li>
+                        <li>The Mind Museum Science Labs – 450 m</li>
+                        <li>Playgrounds at Terra 28th – 950 m</li>
+                        <li>Timezone Market! Market! – 900 m</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- Landmarks & Religious Sites -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="nearby-list">
+                    <h6 class="nearby-title"><img src="icons/graveyard_12351596.png" alt=""> Landmarks & Religious
+                        Sites
+                    </h6>
+                    <ul>
+                        <li>St. Michael the Archangel Parish – 850 m</li>
+                        <li>St. John Paul II Chapel – 1.1 km</li>
+                        <li>National Shrine of the Sacred Heart – 3.7 km</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--reviews-->
+    <div class="container reviews mt-3" id="reviews">
+        <h3 class="text-title">Guests Ratings</h3>
+        <p class="room-info">Guests who stayed at Solana Vierra Hotel shared mixed experiences. While many
+            appreciated
+            the comfort and location, others noted room for improvement in cleanliness and facilities. The staff
+            received moderate feedback, reflecting both friendliness and areas needing enhancement.
+        </p>
+
+        <div class="d-flex flex-nowrap overflow-auto gap-3">
+            <div class="flex-shrink-0 review p-3" style="min-width: 300px;">
+                <h2 class="mt-4">5.0</h2>
+                <p class="text-sm text-center fw-bold">Excellent</p>
+
+                <div class="review-rating">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
+            </div>
+
+
+            <div class="flex-shrink-0 review-scale p-3" style="min-width: 300px;">
+                <p><b>RATING SCALE</b></p>
+
+                <h6>Excellent Experience
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </h6>
+
+                <h6>Accomodating Experience
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9734;</span>
+                </h6>
+
+                <h6>Average Experience
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9734;</span>
+                    <span class="star">&#9734;</span>
+                </h6>
+
+                <h6>Poor Experience
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9734;</span>
+                    <span class="star">&#9734;</span>
+                    <span class="star">&#9734;</span>
+                </h6>
+
+                <h6>Terrible Experience
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9734;</span>
+                    <span class="star">&#9734;</span>
+                    <span class="star">&#9734;</span>
+                    <span class="star">&#9734;</span>
+                </h6>
+            </div>
+
+
+
+            <div class="flex-shrink-0 categories p-3" style="min-width: 300px;">
+                <p><b>CATEGORIES</b></p>
+
+                <div class="row">
+                    <div class="col-4">
+                        <h6 class="fw-bold">Rooms</h6>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+
+                        <h6 class="fw-bold">Staffs</h6>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                    </div>
+
+                    <div class="col-4">
+                        <h6 class="fw-bold">Price</h6>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                        <span class="star">&#9734;</span>
+
+                        <h6 class="fw-bold">Cleanliness</h6>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+
+                    <div class="col-4">
+                        <h6 class="fw-bold">Services</h6>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+
+                        <h6 class="fw-bold">Location</h6>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                        <span class="star">&#9734;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
